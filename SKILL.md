@@ -1,10 +1,11 @@
----
+﻿---
 name: khazix-writer
 description: "数字生命卡兹克公众号长文写作风格引擎。基于4层质检(L1硬性规则→L2风格一致性→L3内容质量→L4活人感终审)和HKR选题框架。触发词：写文章/写稿子/帮我写/续写/扩写/公众号文章/长文/出稿/按我的风格写/写成文章。不适用场景：短内容(小红书/推特/朋友圈)→viral-writer/content-engine; 纯标题摘要→dbs-xhs-title; 非中文写作→不触发。与相邻skill边界：viral-writer(多平台短内容)、content-engine(社媒)、humanizer-zh(去AI味终审)。正例：'帮我把这篇PDF写成公众号文章'→触发; '用我的风格续写这篇稿子'→触发; '我这有个产品brief帮我出篇文章'→触发。反例：'帮我写个小红书帖子'→不触发→viral-writer; '给这篇文章起5个标题'→不触发→dbs-xhs-title。"
-version: "2.0.0 | R2压缩: 2026-06-08 | methodology: SkillOpt R2 | model: DeepSeek v4 Pro | 详细写作技法见 references/writing_genome.md"
+disable-model-invocation: true
+version: "2.0.0 | R2: mattpocock alignment | 2026-07-06"
 ---
 
-# 卡兹克公众号长文写作 (R2 压缩版)
+# 写作
 
 > 角色定位: "有见识的普通人在认真聊一件打动他的事。"
 > 详细写作技法: `references/writing_genome.md` (6.1KB)
@@ -28,6 +29,7 @@ version: "2.0.0 | R2压缩: 2026-06-08 | methodology: SkillOpt R2 | model: DeepS
 - **K (Knowledge)**: 看完能学到新东西吗？1-5分
 - **R (Resonance)**: 能戳中情绪吗？1-5分
 - **通过线**: ≥2项达标才动笔；信息不够主动问用户补充
+- **完成标准**: HKR评分已生成，≥2项达标（≥3分）才继续；未达标则向用户反馈选题方向建议并等待调整
 
 ### Step 2: AI角色边界
 
@@ -40,6 +42,7 @@ version: "2.0.0 | R2压缩: 2026-06-08 | methodology: SkillOpt R2 | model: DeepS
 | 梳理逻辑和结构 | |
 
 **协作流**: 用户定角度→AI扩写→用户改→AI润色→用户终审。AI不替用户做创意决策。
+**完成标准**: AI擅长的5项已分配、需人工的4项已确认、协作流协议已双方认可
 
 ### Step 3: 写作 (详见 references/writing_genome.md)
 
@@ -59,6 +62,7 @@ version: "2.0.0 | R2压缩: 2026-06-08 | methodology: SkillOpt R2 | model: DeepS
 | 反向论证 | 先满足期待再打破("你以为…结果就是…") |
 
 **绝对禁区**: 禁用词(list-style/排比句/万能结论/"赋能""抓手""闭环"等)、禁用标点(破折号/省略号)、结构套话("首先其次最后""值得注意的是""综上所述")、空泛工具名("AI助手""强大的工具")。
+**完成标准**: 10项技法至少使用3项以上，禁区零违规（逐项扫描通过），正文已产出且≥2KB
 
 ### Step 4: 四层自检
 
@@ -123,6 +127,7 @@ version: "2.0.0 | R2压缩: 2026-06-08 | methodology: SkillOpt R2 | model: DeepS
 | L3内容不通过 | 观点无支撑/知识弱 | 调用weread-skills/exa-search补证据 |
 | L4活人感不通过 | 接近AI模板化 | 想象"卡兹克本人会怎么说"重写 |
 | HKR选题<2项 | 选题质量不足 | 与用户沟通调整方向 |
+**完成标准**: L1-L4全层通过（无❌），质检报告已按模板生成，修复优先级已排序
 
 ## G1-G6 收费产品门禁
 
@@ -170,3 +175,7 @@ version: "2.0.0 | R2压缩: 2026-06-08 | methodology: SkillOpt R2 | model: DeepS
 - **不适用场景**：与本Skill领域无关的通用任务，或已有其他专项Skill覆盖的任务
 - **触发关键词**：khazix-writer
 - **边界说明**：若任务涉及多个领域，优先路由至最相关的专项Skill
+
+---
+
+写作
